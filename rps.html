@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock, Paper, Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+      function computerPlay() {
+        const n = Math.ceil(Math.random() * 3);
+        if (n === 1) {
+            return "rock"
+        } else if (n === 2) {
+            return "paper"
+        } else {
+            return "scissors"
+        }
+      }
+      function playRound(playerSelection, computerSelection) {
+        console.log("Computer chooses " + computerSelection);
+        if (playerSelection === computerSelection){
+            return "It's a tie!";
+        } else if (playerSelection === "rock" && computerSelection === "paper") {
+            computerScore += 1;
+            return "You lose the round! Rock is covered by Paper";
+        } else if (playerSelection === "rock" && computerSelection === "scissors") {
+            playerScore += 1;
+            return "You win the round! Rock breaks Scissors";
+        } else if (playerSelection === "paper" && computerSelection === "rock") {
+            playerScore += 1;
+            return "You win the round! Paper covers Rock";
+        } else if (playerSelection === "paper" && computerSelection === "scissors") {
+            computerScore += 1;
+            return "You lose the round! Paper is cut by Scissors";
+        } else if (playerSelection === "scissors" && computerSelection === "rock") {
+            computerScore += 1;
+            return "You lose the round! Scissors are Broken by Rock";
+        } else if (playerSelection === "scissors" && computerSelection === "paper") {
+            playerScore += 1;
+            return "You win the round! Scissors cuts Paper";
+        } else {
+            return "Player Selection unknown to me. Try again."
+        }
+      }
+
+      function game() {
+          console.log("First to 3 wins!");
+          while (playerScore < 3 && computerScore < 3) {
+            const playerSelection = window.prompt("Rock, Paper, or Scissors?");
+            console.log(playRound(playerSelection.toLowerCase(), computerPlay()));
+            console.log("Player Score: " + playerScore + "\t Computer Score: " + computerScore);
+          }
+          if (playerScore === 3) {
+              console.log("You win the Game!!!!");
+          } else {
+              console.log("Oh noooo! You lose the game!");
+          }
+      }
+      let playerScore = 0;
+      let computerScore = 0;
+      game()
+  </script>
+</body>
+</html>
